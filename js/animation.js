@@ -1,6 +1,6 @@
-import { dataCol1, dataCol2, dataCol3 } from "./data.js";
-
-gsap.registerPlugin(ScrollTrigger);
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 const projectsSelector = {
     element: document.querySelector('.projects'),
@@ -11,6 +11,12 @@ const projectsSelector = {
 const isMobile = window.matchMedia('(max-width:768px)').matches;
 
 const createContents = () => {
+    if (!projectsSelector.wrapper) return;
+    if (typeof dataCol1 === 'undefined' || typeof dataCol2 === 'undefined' || typeof dataCol3 === 'undefined') {
+        console.warn('Data columns not defined.');
+        return;
+    }
+
     const datasets = [dataCol1, dataCol2, dataCol3];
 
     datasets.forEach((data) => {
@@ -46,16 +52,20 @@ const createContents = () => {
     if (!isMobile) calcFilledSpace();
 };
 
-
 const initLenis = () => {
+    if (typeof Lenis === 'undefined') return;
     const lenis = new Lenis({
         lerp: 0.064,
         smoothWheel: true,
     });
 
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
+    if (typeof ScrollTrigger !== 'undefined') {
+        lenis.on('scroll', ScrollTrigger.update);
+    }
+    if (typeof gsap !== 'undefined') {
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+    }
 };
 
 const calcFilledSpace = () => {
@@ -75,6 +85,7 @@ const calcFilledSpace = () => {
 };
 
 const animateMedia = (projectCols, difference) => {
+    if (typeof gsap === 'undefined' || !projectsSelector.element) return;
     gsap.set(projectCols[1], { y: 0 });
 
     gsap.timeline({
@@ -91,11 +102,13 @@ const animateMedia = (projectCols, difference) => {
     });
 };
 
-window.addEventListener('DOMContentLoaded', () => {
+const init = () => {
     createContents();
     if (!isMobile) initLenis();
-});
+};
 
-
-
-if (!isMobile) window.addEventListener('resize', calcFilledSpace);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}

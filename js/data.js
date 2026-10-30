@@ -106,4 +106,6 @@ const dataCol3 = [
     },
 ];
 
-export { dataCol1, dataCol2, dataCol3 };
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { dataCol1, dataCol2, dataCol3 };
+}
