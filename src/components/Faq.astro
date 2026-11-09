@@ -1,0 +1,70 @@
+---
+// Faq.astro - Các câu hỏi thường gặp
+const faqs = [
+  {
+    q: "Mình có thể làm những gì với tấm vé này?",
+    a: "Dĩ nhiên là cháy hết mình tại Hùng Vương Concert: GAMEON rồi! Không chỉ mở ra trải nghiệm âm nhạc sôi động, mà chiếc vé của bạn còn góp phần gây quỹ để vẽ nên tương lai tươi sáng cho những em nhỏ có mảnh đời khó khăn tại xã Cư Pui, huyện Krông Bông, tỉnh Đắk Lắk nữa đó!"
+  },
+  {
+    q: "Mình có thể mua vé trực tiếp ở đâu?",
+    a: "Bạn có thể mua vé trực tiếp tại Phòng Thanh Niên của THPT chuyên Hùng Vương, Bình Dương (từ 8:00 đến 17:00) và một số điểm bán Offline khác sẽ được chúng mình cập nhật tại Fanpage Hùng Vương Concert nhé!"
+  },
+  {
+    q: "Sau khi đặt vé E-Ticket thành công, khoảng bao lâu tôi sẽ nhận được vé qua email?",
+    a: "Sau khi đặt vé thành công, bạn sẽ nhận được vé E-Ticket qua email trong vòng 24 giờ. Trong trường hợp hệ thống xử lý chậm, thời gian nhận vé có thể kéo dài tối đa 2 ngày. Nếu quá thời gian trên mà bạn vẫn chưa nhận được vé, vui lòng liên hệ ngay với chúng tôi để được hỗ trợ."
+  }
+];
+---
+
+<section class="faq">
+  <div class="wrapper no-padding top-p">
+    <div class="heading-div center faq">
+      <p id="faq-title">FreQuentLy AsKed QuesTions</p>
+    </div>
+    <div class="faq-wrapper w-dyn-list">
+      <div role="list" class="faq-list w-dyn-items">
+        {faqs.map((item) => (
+          <div style="height: auto;" role="listitem" class="faq-item w-dyn-item">
+            <div class="ques-div">
+              <div>{item.q}</div>
+              <div class="faq-arrow-div rotate">
+                <div class="w-embed">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="expand_less">
+                      <path
+                        id="vector"
+                        d="M9.86667 21.2798L8 19.4131L16 11.4131L24 19.4131L22.1333 21.2798L16 15.1464L9.86667 21.2798Z"
+                        fill="currentColor"
+                      />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="ans-div">
+              <div class="w-richtext">
+                <ul role="list">
+                  <li>{item.a}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const quesDivs = document.querySelectorAll('.faq-item .ques-div');
+    quesDivs.forEach((ques) => {
+      ques.addEventListener('click', () => {
+        const ansDiv = ques.nextElementSibling;
+        const arrowDiv = ques.querySelector('.faq-arrow-div');
+        if (ansDiv) ansDiv.classList.toggle('active');
+        if (arrowDiv) arrowDiv.classList.toggle('active');
+      });
+    });
+  });
+</script>

@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'DFVN 36daysoftype';
+    src: url('../fonts/dfvn36daysoftype.otf') format('opentype');
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ganh Type - Regular';
+    src: url('../fonts/ganhtyperegular.otf') format('opentype');
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    min-height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    padding: 32px;
+    background: #081910 url('../images/kv/404-bg.webp') no-repeat center / cover fixed;
+}
+
+.container {
+    width: min(100%, 1000px);
+}
+
+.container h2 {
+    font-family: 'DFVN 36daysoftype', sans-serif;
+    font-weight: normal;
+    color: white;
+    font-size: clamp(30px, 5vw, 64px);
+    line-height: 1.25;
+}
+
+.container h2 + h2 {
+    margin-top: 16px;
+    font-family: 'Ganh Type - Regular', Arial, sans-serif;
+    font-size: clamp(18px, 2.5vw, 28px);
+    line-height: 1.45;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 24px;
+        background-position: center;
+        background-size: 100% 100%;
+        background-attachment: scroll;
+    }
+
+    .container h2 {
+        font-size: clamp(28px, 8vw, 42px);
+    }
+
+    .container h2 + h2 {
+        margin-top: 12px;
+        font-size: clamp(17px, 4.5vw, 22px);
+    }
+}

@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Đặt Vé Trực Tuyến - VietQR | Hùng Vương Concert: GAMEON"
+  description="Thanh toán và đăng ký mua vé điện tử E-Ticket Hùng Vương Concert"
+  customCss={['/style/payment.css']}
+  enableLenis={false}
+  enableGlitch={true}
+>
+  <div
+    class="payment-page-wrapper"
+    style="min-height: 100vh; background: url('/images/kv/hvc-ticket.webp') no-repeat fixed center top; background-size: cover; padding: 40px 15px;"
+  >
+    <div class="container">
+      <!-- CỘT BÊN TRÁI: THÔNG TIN SỰ KIỆN, BẢNG TÍNH TIỀN, MÃ VIETQR ĐỘNG & TÀI KHOẢN -->
+      <div class="data-display">
+        <h2>Hung Vuong Concert: GAMEON</h2>
+        <p class="amount">320.000 VNĐ / vé</p>
+
+        <div class="details">
+          <p><strong>E-Ticket</strong><span>Vé Sự Kiện Trực Tuyến</span></p>
+          <p>Đơn giá <span>320.000 VNĐ</span></p>
+          <p>Số lượng vé <span id="quantity-display">1</span></p>
+          <hr style="margin: 15px 0; border: 0; border-top: 1px solid rgba(255,255,255,0.3);" />
+          <p class="total">Tổng tiền thanh toán <span id="total-due">320.000 VNĐ</span></p>
+        </div>
+
+        <!-- KHU VỰC MÃ VIETQR VÀ THÔNG TIN TÀI KHOẢN -->
+        <div class="banking-detail">
+          <h4 style="margin-bottom: 12px; font-size: 1.15rem; color: #fff; text-transform: uppercase; letter-spacing: 0.5px;">
+            Quét Mã VietQR Tự Động
+          </h4>
+          <div class="qr-wrapper">
+            <img id="vietqr-img" src="" alt="Mã VietQR Chuyển Khoản" />
+          </div>
+
+          <div class="bank-info-box">
+            <p class="bank-row"><strong>Ngân hàng:</strong> <span>Vietcombank (VCB)</span></p>
+            <p class="bank-row"><strong>Số tài khoản:</strong> <span class="highlight-text">1024521600</span></p>
+            <p class="bank-row"><strong>Chủ tài khoản:</strong> <span>Nguyen Thi Thu Phuong</span></p>
+            <p class="bank-row"><strong>Số tiền:</strong> <span id="qr-amount-display" class="highlight-price">320.000 VNĐ</span></p>
+            <p class="bank-row"><strong>Nội dung CK:</strong> <span id="qr-memo-display" class="highlight-memo">1 VE</span></p>
+          </div>
+          <p class="qr-note">* App ngân hàng sẽ tự điền đúng số tiền và nội dung khi quét mã QR trên.</p>
+        </div>
+
+        <div class="terms-notes" style="margin-top: 20px; font-size: 0.9rem; line-height: 1.6; opacity: 0.9;">
+          <p>• Khi mua vé điện tử (E-Ticket), bạn sẽ nhận được vé qua email.</p>
+          <p>• Mỗi lượt mua từ 1 đến tối đa 5 vé.</p>
+          <p>• Vui lòng thanh toán đúng số tiền và giữ nguyên nội dung chuyển khoản được tạo tự động.</p>
+          <p>• Vé đã mua vui lòng miễn đổi trả.</p>
+        </div>
+      </div>
+
+      <!-- CỘT BÊN PHẢI: FORM NHẬP THÔNG TIN KHÁCH HÀNG -->
+      <div class="form-section">
+        <form
+          id="form"
+          method="POST"
+          action="https://script.google.com/macros/s/AKfycbzb2C4R9DwJUEAkvFLtqO9rxmSL2OFQyjl0-v1euqJgVgpEkeU_kqGkHniMbo41opaH/exec"
+        >
+          <h3 style="font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; color: #111;">Thông Tin Đặt Vé</h3>
+
+          <label for="customer" class="form-label">Họ và Tên *</label>
+          <div class="form-group">
+            <input type="text" class="form-control" id="customer" name="Customer" placeholder="Ví dụ: Nguyen Van A" required />
+          </div>
+
+          <label for="phone" class="form-label">Số điện thoại *</label>
+          <div class="form-group">
+            <input type="text" class="form-control" id="phone" name="Phone" placeholder="Ví dụ: 0912345678" required />
+          </div>
+
+          <label for="email" class="form-label">Email *</label>
+          <div class="form-group">
+            <input type="email" class="form-control" id="email" name="Email" placeholder="email@gmail.com" required />
+          </div>
+
+          <label for="linkfb" class="form-label">Link Facebook *</label>
+          <div class="form-group">
+            <input type="text" class="form-control" id="linkfb" name="linkfb" placeholder="https://facebook.com/..." required />
+          </div>
+
+          <label for="referrer" class="form-label">Người giới thiệu</label>
+          <div class="form-group">
+            <input type="text" class="form-control" id="referrer" name="referrer" placeholder="Tên người giới thiệu (nếu có)" />
+          </div>
+
+          <label for="quantity" class="form-label">Số lượng vé (1 - 5) *</label>
+          <div class="form-group">
+            <input type="number" min="1" max="5" class="form-control" id="quantity" name="Quantity" value="1" required />
+          </div>
+
+          <label class="form-label" style="color: #e63946; font-weight: bold;">* Upload hóa đơn / bill chuyển khoản</label>
+          <div class="form-group">
+            <input type="file" class="form-control" id="image" name="Image" accept="image/*" required />
+          </div>
+
+          <div class="checkbox" style="margin: 15px 0 20px 0;">
+            <label class="checkbox-label" style="cursor: pointer; font-size: 0.95rem; color: #333;">
+              <input type="checkbox" required style="width: auto; margin-right: 8px;" /> Tôi đồng ý với các điều khoản và quy định của sự kiện.
+            </label>
+          </div>
+
+          <button type="submit" class="pay-btn">Xác Nhận Mua Vé</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- POPUP THÔNG BÁO CHUNG -->
+    <div id="popup" class="popup-overlay">
+      <div class="popup-content">
+        <h2>Thông báo</h2>
+        <p id="popup-message"></p>
+        <button id="popup-close" class="popup-close-btn">Đóng</button>
+      </div>
+    </div>
+
+    <!-- POPUP XÁC NHẬN MUA VÉ -->
+    <div class="popup-overlay" id="confirmation-popup">
+      <div class="popup-content">
+        <h2>Xác Nhận</h2>
+        <p id="popup-cf-message"></p>
+        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+          <button class="popup-confirm-btn" id="popup-confirm-btn">Xác nhận</button>
+          <button id="popup-cf-close" class="popup-close-btn" style="background: #6c757d;">Hủy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Fragment slot="scripts">
+    <script is:inline src="/js/eticket.js"></script>
+  </Fragment>
+</Layout>

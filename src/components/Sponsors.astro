@@ -1,0 +1,44 @@
+---
+// Sponsors.astro - Danh sách nhà tài trợ với hiệu ứng cuộn vô tận (Marquee)
+const sponsors = [
+  "/images/logo-ntt/hvc.webp",
+  "/images/logo-ntt/VGU.webp",
+  "/images/logo-ntt/TKCA.webp",
+  "/images/logo-ntt/ROYAL.webp",
+  "/images/logo-ntt/GREENGROUP.webp",
+  "/images/logo-ntt/micayseoul.webp",
+  "/images/logo-ntt/kimmai.webp",
+  "/images/logo-ntt/Niyomthai.webp",
+  "/images/logo-ntt/TamDuongTea.webp",
+  "/images/logo-ntt/cicinati.webp",
+  "/images/logo-ntt/iu.webp",
+  "/images/logo-ntt/STREETIE.webp",
+  "/images/logo-ntt/BHMS.webp",
+  "/images/logo-ntt/POTATOCLOTHING.webp",
+  "/images/logo-ntt/1993FLORIST.webp",
+  "/images/logo-ntt/phamngocnhu.webp",
+  "/images/logo-ntt/nhankiet.webp",
+  "/images/logo-ntt/biwase.webp",
+];
+---
+
+<section class="ntt-title">
+  <hr class="line" />
+  <p>prOudly Sponsored By</p>
+  <hr class="line" />
+</section>
+
+<section class="ntt">
+  <div class="ntt-logo">
+    <div class="logos-slide">
+      {sponsors.map((logo) => (
+        <img src={logo} alt="Sponsor Logo" loading="lazy" />
+      ))}
+    </div>
+    <div class="logos-slide">
+      {sponsors.map((logo) => (
+        <img src={logo} alt="Sponsor Logo" loading="lazy" />
+      ))}
+    </div>
+  </div>
+</section>

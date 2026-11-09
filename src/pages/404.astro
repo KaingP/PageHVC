@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="We'll Be Back Soon | Hùng Vương Concert: GAMEON"
+  description="HVC Đang Hoàn Thiện Một Số Nâng Cấp"
+  customCss={['/style/404.css']}
+  enableLenis={false}
+  enableGlitch={true}
+>
+  <div class="container" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
+    <h2>HVC Đang Hoàn Thiện Một Số Nâng Cấp.</h2>
+    <h2>Vui lòng quay lại sau để tiếp tục sử dụng dịch vụ.</h2>
+    <div style="margin-top: 30px;">
+      <a href="/" style="display: inline-block; padding: 12px 28px; background: #D20001; color: white; border-radius: 20px; text-decoration: none; font-weight: bold;">
+        Trang Chủ
+      </a>
+    </div>
+  </div>
+
+  <Fragment slot="scripts">
+    <script is:inline>
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (
+          e.key === 'F12' ||
+          (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+          (e.ctrlKey && e.key === 'U')
+        ) {
+          e.preventDefault();
+        }
+      });
+    </script>
+  </Fragment>
+</Layout>

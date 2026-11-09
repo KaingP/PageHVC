@@ -1,0 +1,21 @@
+---
+// IntroOverlay.astro - Màn hình mở đầu hiển thị chữ không dấu nguyên bản
+---
+
+<div class="overlay" id="overlay">
+  <video class="background-video" autoplay muted loop playsinline>
+    <source src="/images/led-web.mp4" type="video/mp4" />
+  </video>
+  <div class="intro">
+    <h2><div>Hung Vuong Concert</div></h2>
+    <h2><div>GAMEON</div></h2>
+    <h2><div>18.01.25</div></h2>
+  </div>
+  <div class="intro">
+    <h2>
+      <div style="font-size: 4.2rem;"><span>Click</span> anywhere to continue</div>
+    </h2>
+  </div>
+</div>
+
+<script is:inline src="/scripts.js"></script>

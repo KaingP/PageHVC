@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Check Your E-Ticket - Hùng Vương Concert"
+  description="Kiểm tra thông tin vé điện tử Hùng Vương Concert: GAMEON"
+  customCss={['/style/ticketinfo.css']}
+  enableLenis={false}
+  enableGlitch={true}
+>
+  <div
+    class="ticket-page-wrapper"
+    style="min-height: 100vh; background: url('/images/kv/bg-checkticket.webp') no-repeat fixed center top; background-size: cover;"
+  >
+    <div class="container" style="padding-top: 60px;">
+      <h2>Check Your E-Ticket</h2>
+      <input type="text" id="searchInput" placeholder="Nhập đoạn mã được quét từ mã QR trong vé của bạn." />
+      <button id="searchButton">Tìm kiếm</button>
+      <div class="output"></div>
+    </div>
+  </div>
+
+  <Fragment slot="scripts">
+    <script is:inline src="/js/ticketInfo.js"></script>
+    <script is:inline>
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (
+          e.key === 'F12' ||
+          (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+          (e.ctrlKey && e.key === 'U')
+        ) {
+          e.preventDefault();
+        }
+      });
+    </script>
+  </Fragment>
+</Layout>

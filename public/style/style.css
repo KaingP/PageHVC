@@ -1,0 +1,156 @@
+@font-face {
+    font-family: 'Coolvetica';
+    src: url('../fonts/coolvetica\ condensed\ rg.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Upheaval';
+    src: url('../fonts/UPHEAVTT.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Young Display Bold';
+    src: url('../fonts/YOUNG%20TYPEFACE%20-%20BOLD%20DISPLAY.OTF') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Young Typeface';
+    src: url('../fonts/YOUNG%20TYPEFACE.OTF') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --font-gameon: 'Upheaval', 'Young Display Bold', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.overlay {
+    z-index: 1000;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: #081910;
+    color: #FFFFFF;
+    display: flex;
+    clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 998;
+    pointer-events: none;
+    /* Đảm bảo video không ảnh hưởng đến tương tác với các phần tử khác */
+}
+
+.intro {
+    width: 50%;
+    padding: 1em;
+    z-index: 999;
+}
+
+h2 {
+    margin: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    font-size: 30px;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+
+.intro h2 {
+    font-family: var(--font-gameon, 'Upheaval', 'Young Display Bold', sans-serif);
+    letter-spacing: 2px;
+}
+
+.intro:nth-child(2) h2 {
+    font-size: 100px;
+    text-align: right;
+
+}
+
+
+.intro:nth-child(2) h2 span {
+    color: #FFFFFF;
+
+}
+
+.nav-effect {
+
+    padding: 15px 30px;
+    font-size: rem;
+    /* Slightly larger text size */
+    text-decoration: none;
+    /* Remove underline from the link */
+    transition: background-color 0.3s ease;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+.buy-tickets-button {
+    background-color: #FFFFFF;
+    /* Bright orange background */
+    color: #081910;
+    /* White text color */
+    padding: 15px 30px;
+    border-radius: 30px;
+    /* Fully rounded corners */
+    font-size: 3.2rem;
+    /* Slightly larger text size */
+    text-decoration: none;
+    /* Remove underline from the link */
+    font-weight: bold;
+    /* Bold text */
+    transition: background-color 0.3s ease;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: max(100vw / 768 * 10);
+    }
+
+    .intro h2 {
+    font-family: var(--font-gameon, 'Upheaval', 'Young Display Bold', sans-serif);
+    letter-spacing: 2px;
+}
+
+.intro:nth-child(2) h2 {
+        font-size: 10rem;
+        text-align: right;
+    }
+
+    .ticket-button-div {
+        margin-top: 5rem;
+    }
+
+}

@@ -1,0 +1,82 @@
+.pack {
+    position: relative;
+    transform-origin: center;
+    width: 90vw; /* 1000px / 10px per rem */
+    margin: 0 auto 2rem auto; /* 2em = 2rem */
+    padding: 20rem 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.indicator {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 0.5rem; /* 5px / 10px per rem */
+    height: 0.5rem; /* 5px / 10px per rem */
+    background: #FFFFFF;
+    border-radius: 100%;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.gallery {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    overflow: hidden;
+}
+
+.gallery-item {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex: 0 1 20rem; /* 200px / 10px per rem */
+    height: 80rem; /* 600px / 10px per rem */
+    margin: 0 0.5rem;
+    background: #081910;
+    overflow: hidden;
+    transition: flex 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.gallery-item img {
+    width: 40rem; /* 400px / 10px per rem */
+    height: 100%;
+    object-fit: contain;
+    transform: scale(1.75); /* Giữ hiệu ứng scale */
+}
+
+.spotify{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 76.8rem) { /* 768px / 10px per rem */
+  
+    .gallery {
+        flex-direction: column; /* Stack gallery items vertically */
+        align-items: center; /* Center align gallery items */
+        justify-content: center; /* Center align gallery items vertically */
+    }
+
+    .gallery-item {
+        flex: 0 1 auto; /* Remove fixed size, let content dictate size */
+        width: 80rem; /* Điều chỉnh kích thước cho mobile */
+        height: 60rem; /* Giữ kích thước chiều cao */
+        margin: 1rem 0; /* 10px / 10px per rem */
+        transition: none; /* Remove animation transition */
+    }
+
+    .gallery-item img {
+        transform: none; /* Loại bỏ hiệu ứng scale trên di động */
+        width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng */
+    }
+}
+
+@media (max-width: 48rem) { /* 480px / 10px per rem */
+    .gallery-item {
+        width: 90rem; /* Điều chỉnh kích thước cho màn hình nhỏ hơn */
+        height: 60rem; /* Giữ kích thước chiều cao */
+    }
+}

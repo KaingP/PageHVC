@@ -1,0 +1,23 @@
+{
+  "name": "pagehungvuongconcert",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "keywords": [
+    "hungvuongconcert",
+    "astro",
+    "gameon"
+  ],
+  "author": "HVC Team",
+  "license": "ISC",
+  "packageManager": "pnpm@10.32.1",
+  "dependencies": {
+    "astro": "^7.4.7"
+  }
+}

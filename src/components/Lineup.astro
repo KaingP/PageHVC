@@ -1,0 +1,55 @@
+---
+// Lineup.astro - Danh sách nghệ sĩ HVC GAMEON
+const artists = [
+  { id: '1', img: '/images/casi/casi01.webp' },
+  { id: '2', img: '/images/casi/casi02.webp' },
+  { id: '3', img: '/images/casi/casi03.webp' },
+  { id: '4', img: '/images/casi/casi04.webp' },
+  { id: '5', img: '/images/casi/casi05.webp' },
+  { id: '6', img: '/images/casi/casi06.webp', link: '/speaker/pentagram' },
+  { id: '7', img: '/images/casi/casi07.webp' },
+  { id: '8', img: '/images/casi/casi08.webp' },
+  { id: '9', img: '/images/casi/casi09.webp' },
+  { id: '10', img: '/images/casi/casi10.webp' },
+];
+---
+
+<div class="section" id="talent-section">
+  <div class="talent">
+    <div class="wrapper no-padding">
+      <div class="wrapper home-speaker-wrapper">
+        <div class="heading-div">
+          <p id="talent-title"><span class="letterU">GAMEON</span> - <span class="lineup">LinEup</span></p>
+        </div>
+        <div class="speaker-wrapper">
+          <div class="speaker-wrapper">
+            <div class="speakers-grid">
+              {artists.map((artist) => (
+                <div class="speaker-item">
+                  <a class="speaker-card w-inline-block" href={artist.link || undefined}>
+                    <img
+                      sizes="(max-width: 479px) 48vw, (max-width: 767px) 32vw, 33vw"
+                      alt="Nghệ sĩ biểu diễn HVC GAMEON"
+                      src={artist.img}
+                      loading="lazy"
+                      class="speaker-img basic"
+                      style="opacity: 1;"
+                    />
+                    <img
+                      sizes="(max-width: 991px) 100vw, 33vw"
+                      alt="Nghệ sĩ biểu diễn HVC GAMEON"
+                      src={artist.img}
+                      loading="lazy"
+                      class="speaker-img hover"
+                      style="opacity: 0;"
+                    />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

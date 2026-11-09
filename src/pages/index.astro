@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IntroOverlay from '../components/IntroOverlay.astro';
+import HeaderNav from '../components/HeaderNav.astro';
+import Hero from '../components/Hero.astro';
+import GalleryProjects from '../components/GalleryProjects.astro';
+import Lineup from '../components/Lineup.astro';
+import MapSection from '../components/MapSection.astro';
+import TicketSection from '../components/TicketSection.astro';
+import Faq from '../components/Faq.astro';
+import Sponsors from '../components/Sponsors.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Hùng Vương Concert: GAMEON"
+  description="Hùng Vương Concert: GAMEON - Sự kiện âm nhạc từ thiện lớn nhất trong năm của trường THPT Chuyên Hùng Vương, Bình Dương. Cháy hết mình cùng âm nhạc!"
+>
+  <!-- Màn hình mở đầu đậm chất điện ảnh -->
+  <IntroOverlay />
+
+  <!-- Nội dung trang chính -->
+  <section class="content">
+    <div class="container">
+      <HeaderNav />
+      <main class="app">
+        <Hero />
+        <GalleryProjects />
+      </main>
+    </div>
+  </section>
+
+  <!-- Lineup nghệ sĩ -->
+  <Lineup />
+
+  <!-- Bản đồ sân khấu -->
+  <MapSection />
+
+  <!-- Khu vực mua vé & Giới thiệu & Địa điểm -->
+  <TicketSection />
+
+  <!-- Câu hỏi thường gặp -->
+  <Faq />
+
+  <!-- Nhà tài trợ -->
+  <Sponsors />
+
+  <!-- Chân trang -->
+  <Footer />
+
+  <!-- Client-side Animation & Interactivity Scripts -->
+  <Fragment slot="scripts">
+    <script is:inline src="/js/data.js"></script>
+    <script is:inline src="/js/animation.js"></script>
+    <script is:inline src="/js/talent.js"></script>
+  </Fragment>
+</Layout>

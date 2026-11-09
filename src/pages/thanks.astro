@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Lời Cảm Ơn | Hùng Vương Concert: GAMEON"
+  description="Cảm ơn bạn đã tham gia và ủng hộ Hùng Vương Concert: GAMEON"
+  customCss={[
+    'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css',
+    '/style/test.css',
+    'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+  ]}
+  enableLenis={false}
+  enableGlitch={true}
+>
+  <section class="part1" style="background-image: url('/images/tuthien.webp'); min-height: 100vh;">
+    <div class="overlay"></div>
+    <div class="dark-overlay"></div>
+    <div class="container-lg content" style="position: relative; z-index: 10; padding: 60px 15px;">
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 text-white text-center">
+          <h1 class="fw-bold header" style="margin-bottom: 24px;">Lời Cảm Ơn</h1>
+          <p style="line-height: 1.8;">
+            Thay mặt Ban Tổ Chức Hùng Vương Concert, chúng tôi xin gửi lời cảm ơn chân thành đến tất cả các
+            bạn đã tham gia và ủng hộ chương trình. Sự đóng góp của các bạn không chỉ giúp chương trình
+            thành công, mà còn mang lại cơ hội giúp đỡ những hoàn cảnh khó khăn, tạo ra sự lan tỏa yêu thương trong cộng đồng.
+          </p>
+          <div class="quote" style="margin: 30px 0;">
+            <div class="card text-dark p-4" style="border-radius: 15px;">
+              <p class="main" style="font-style: italic;">
+                "Chúng tôi tin rằng: Thành công của chương trình không chỉ đến từ <strong>sự nỗ lực</strong>
+                của Ban Tổ Chức mà còn là kết tinh từ <strong>tình yêu thương, sẻ chia và đoàn kết</strong> của tất cả mọi người."
+              </p>
+              <div class="row text-start mt-3">
+                <div class="col-sm-6">
+                  <p id="customerName" class="mb-1"></p>
+                  <p id="customerEmail" class="mb-1"></p>
+                </div>
+                <div class="col-sm-6">
+                  <p id="customerPhone" class="mb-1"></p>
+                  <p id="ticketQuantity" class="mb-1"></p>
+                </div>
+              </div>
+              <p class="card-footer mt-3 mb-0 bg-transparent border-0 text-muted">Hung Vuong Concert: GAMEON.</p>
+            </div>
+          </div>
+          <p style="line-height: 1.8;">
+            Chương trình vừa là món quà tinh thần hấp dẫn sau một mùa học tập căng thẳng cho các bạn trẻ
+            trong khu vực tỉnh Bình Dương và các khu vực lân cận, đồng thời là cánh cửa mở ra vô vàn cơ hội
+            cho các vùng khó khăn, chậm phát triển nói chung và các hộ gia đình, trẻ em khó khăn nói riêng.
+            Từ sâu thẳm trái tim mình, chúng tôi hy vọng tinh thần này sẽ mãi mãi được duy trì và lan tỏa.
+          </p>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+      <div class="text-center mt-4">
+        <a class="btn btn-custom" href="/" style="padding: 12px 30px; border-radius: 25px; text-decoration: none;">
+          Go To Homepage <i class="fa fa-arrow-circle-o-right ms-2" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="scripts">
+    <script is:inline>
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get('customer');
+      const email = params.get('email');
+      const phone = params.get('phone');
+      const qty = params.get('quantity');
+
+      if (name) document.getElementById('customerName').textContent = `Họ và tên: ${name}`;
+      if (email) document.getElementById('customerEmail').textContent = `Email: ${email}`;
+      if (phone) document.getElementById('customerPhone').textContent = `Số điện thoại: ${phone}`;
+      if (qty) document.getElementById('ticketQuantity').textContent = `Số lượng vé: ${qty}`;
+
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (
+          e.key === 'F12' ||
+          (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+          (e.ctrlKey && e.key === 'U')
+        ) {
+          e.preventDefault();
+        }
+      });
+    </script>
+  </Fragment>
+</Layout>

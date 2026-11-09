@@ -1,0 +1,883 @@
+/* ==============================================================================
+ * style/spider-verse.css - Spider-Man: Into the Spider-Verse Comic Glitch & Transitions
+ * ==============================================================================
+ */
+
+@font-face {
+  font-family: 'Upheaval';
+  src: url('../fonts/UPHEAVTT.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Young Typeface';
+  src: url('../fonts/YOUNG%20TYPEFACE.OTF') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Young Display Bold';
+  src: url('../fonts/YOUNG%20TYPEFACE%20-%20BOLD%20DISPLAY.OTF') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-gameon: 'Upheaval', 'Young Display Bold', sans-serif;
+  --vt-ink: #FFFFFF;
+  --vt-plate-c: #0212EE;
+  --vt-plate-m: #D20001;
+  --vt-plate-y: #FFA62B;
+  --vt-violet: #0212EE;
+  --vt-magenta: #D20001;
+  --vt-green: #116B09;
+  --vt-gold: #FFA62B;
+  --vt-key: #081910;
+  --vt-dot-red: #D20001;
+  --vt-blend: screen;
+}
+
+
+
+.vt-root {
+  display: inline-block;
+  position: relative;
+  color: var(--vt-ink, #081910);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  vertical-align: baseline;
+  -webkit-font-smoothing: antialiased;
+}
+
+:where(.vt-root[data-tone='dark']) {
+  --vt-ink: #FFFFFF;
+  --vt-blend: screen;
+  --vt-plate-c: #0212EE;
+  --vt-plate-m: #D20001;
+  --vt-plate-y: #FFA62B;
+  --vt-violet: #0212EE;
+  --vt-magenta: #D20001;
+  --vt-green: #116B09;
+  --vt-gold: #FFA62B;
+  --vt-key: #081910;
+  --vt-dot-red: #D20001;
+}
+
+.vt-root[data-tone='dark'][data-glitching='true'] {
+  text-shadow:
+    3px 0 0 var(--vt-plate-c, #0212EE),
+    -3px 0 0 var(--vt-plate-m, #D20001),
+    0 3px 0 var(--vt-green, #116B09),
+    0 -2px 0 var(--vt-dot-red, #D20001),
+    3px 3px 0 var(--vt-key, #081910);
+}
+
+:where(.vt-root[data-tone='light']) {
+  --vt-ink: #081910;
+  --vt-blend: multiply;
+  --vt-plate-c: #0212EE;
+  --vt-plate-m: #D20001;
+  --vt-plate-y: #FFA62B;
+  --vt-violet: #0212EE;
+  --vt-magenta: #D20001;
+  --vt-green: #116B09;
+  --vt-gold: #FFA62B;
+  --vt-key: #081910;
+  --vt-dot-red: #D20001;
+}
+
+
+
+@media (scripting: enabled) {
+  .vt-root[data-phase='waiting'] .vt-sheet {
+    opacity: 0;
+    animation: vt-reveal 0s 3s forwards;
+  }
+}
+
+@keyframes vt-reveal {
+  to {
+    opacity: 1;
+  }
+}
+
+.vt-sheet {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.vt-prose {
+  margin: 0;
+  font-weight: inherit;
+  line-height: var(--vt-leading, 1.25);
+  letter-spacing: inherit;
+  text-wrap: var(--vt-wrap, pretty);
+  font-family: inherit;
+  font-size: inherit;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.35em;
+  row-gap: 0.1em;
+  white-space: pre-wrap;
+}
+
+.vt-prose[data-copy] {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.vt-prose[data-copy='plate'] {
+  mix-blend-mode: var(--vt-blend, multiply);
+}
+
+.vt-prose[data-copy='plate'] .vt-glitch {
+  display: none !important;
+}
+
+.vt-prose[data-plate='c'] {
+  color: var(--vt-plate-c);
+}
+
+.vt-prose[data-plate='m'] {
+  color: var(--vt-plate-m);
+}
+
+.vt-prose[data-plate='y'] {
+  color: var(--vt-plate-y);
+}
+
+/* ------------------------------------------------------------ A Word */
+.vt-word {
+  --vt-paint-violet: var(--vt-violet);
+  --vt-paint-magenta: var(--vt-magenta);
+  --vt-paint-green: var(--vt-green);
+  --vt-paint-gold: var(--vt-gold);
+  --vt-paint-key: var(--vt-key);
+  --vt-paint-dot: var(--vt-dot-red);
+
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  white-space: pre;
+}
+
+.vt-word[data-state='waiting'],
+.vt-word[data-key='false'],
+.vt-word[data-state='waiting'] .vt-word-inner,
+.vt-word[data-key='false'] .vt-word-inner {
+  color: transparent !important;
+  text-shadow: none !important;
+}
+
+.vt-word-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.vt-glitch {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+}
+
+.vt-copy,
+.vt-plate,
+.vt-key-ink,
+.vt-comb-ink,
+.vt-shard-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: pre;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.vt-copy,
+.vt-plate {
+  mix-blend-mode: var(--vt-blend, multiply);
+}
+
+.vt-plate[data-plate='c'] {
+  color: var(--vt-plate-c);
+}
+
+.vt-plate[data-plate='m'] {
+  color: var(--vt-plate-m);
+}
+
+.vt-plate[data-plate='y'] {
+  color: var(--vt-plate-y);
+}
+
+/* Interlace comb */
+.vt-comb {
+  position: absolute;
+  inset: -0.75em -1em;
+  pointer-events: none;
+}
+
+.vt-comb-body {
+  position: absolute;
+  inset: 0.75em 1em;
+}
+
+.vt-key-ink {
+  color: var(--vt-ink, #ffffff);
+}
+
+.vt-comb-ink {
+  mix-blend-mode: var(--vt-blend, multiply);
+}
+
+.vt-comb-ink[data-tint='c'] {
+  color: var(--vt-plate-c);
+}
+
+.vt-comb-ink[data-tint='m'] {
+  color: var(--vt-plate-m);
+}
+
+/* Shards */
+.vt-gap {
+  position: absolute;
+  inset: 0;
+  background-color: var(--vt-key, #081910);
+}
+
+.vt-rim,
+.vt-shard {
+  position: absolute;
+  inset: -30% -15%;
+  pointer-events: none;
+}
+
+.vt-rim {
+  background-color: var(--vt-key, #081910);
+}
+
+.vt-shard {
+  background-color: var(--vt-shard);
+}
+
+.vt-shard[data-color='violet'] {
+  --vt-shard: var(--vt-violet);
+}
+
+.vt-shard[data-color='magenta'] {
+  --vt-shard: var(--vt-magenta);
+}
+
+.vt-shard[data-color='green'] {
+  --vt-shard: var(--vt-green);
+}
+
+.vt-shard[data-color='gold'] {
+  --vt-shard: var(--vt-gold);
+}
+
+/* 8-bit Ordered Bayer Checkerboard Dither Texture (HVC GAME ON pixel art halftone) */
+.vt-shard[data-streak='true'] {
+  background-image: 
+    conic-gradient(var(--vt-shard) 90deg, transparent 90deg 180deg, var(--vt-shard) 180deg 270deg, transparent 270deg);
+  background-size: 5px 5px;
+  image-rendering: pixelated;
+}
+
+.vt-shard-text {
+  inset: 18.75% 11.538%;
+}
+
+.vt-shard[data-ink='light'] .vt-shard-text {
+  color: #ffffff;
+}
+
+.vt-shard[data-ink='dark'] .vt-shard-text {
+  color: var(--vt-key, #081910);
+}
+
+/* 8-bit Pixel Debris & Sparkles */
+.vt-bit {
+  position: absolute;
+  pointer-events: none;
+  image-rendering: pixelated;
+  box-sizing: border-box;
+}
+
+.vt-bit[data-kind='dot'],
+.vt-bit[data-kind='pixel'],
+.vt-bit[data-kind='speck'] {
+  border-radius: 0 !important; /* Vuông vắn pixel 100% */
+  box-shadow: 1px 1px 0 rgba(8, 25, 16, 0.45);
+}
+
+/* Pixel Cross Sparkle (+) từ logo HVC GAME ON */
+.vt-bit[data-kind='cross'] {
+  border-radius: 0 !important;
+  clip-path: polygon(
+    33% 0%, 66% 0%, 66% 33%, 100% 33%, 100% 66%, 66% 66%,
+    66% 100%, 33% 100%, 33% 66%, 0% 66%, 0% 33%, 33% 33%
+  ) !important;
+  -webkit-clip-path: polygon(
+    33% 0%, 66% 0%, 66% 33%, 100% 33%, 100% 66%, 66% 66%,
+    66% 100%, 33% 100%, 33% 66%, 0% 66%, 0% 33%, 33% 33%
+  ) !important;
+}
+
+/* Pixel Star Sparkle (Ngôi sao 8-bit trong logo HVC GAME ON) */
+.vt-bit[data-kind='star'] {
+  border-radius: 0 !important;
+  clip-path: polygon(
+    35% 0%, 65% 0%, 65% 35%, 100% 35%, 100% 65%, 65% 65%,
+    65% 100%, 35% 100%, 35% 65%, 0% 65%, 0% 35%, 35% 35%
+  ) !important;
+  -webkit-clip-path: polygon(
+    35% 0%, 65% 0%, 65% 35%, 100% 35%, 100% 65%, 65% 65%,
+    65% 100%, 35% 100%, 35% 65%, 0% 65%, 0% 35%, 35% 35%
+  ) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vt-root[data-phase='waiting'] .vt-sheet {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * Transparent Header Navigation
+ * -----------------------------------------------------------------------------
+ */
+.nav {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  mix-blend-mode: normal !important;
+}
+
+.nav_wrapper {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ==============================================================================
+ * Hero Fullscreen Layout (HVC GAMEON Full Viewport, Photos below fold)
+ * ==============================================================================
+ */
+.content {
+  position: relative !important;
+  width: 100% !important;
+  min-height: 100vh !important;
+  background-color: #081910 !important;
+}
+
+.hero {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  padding-top: 0 !important;
+  overflow: visible !important;
+}
+
+.hero_wrapper {
+  position: relative !important;
+  width: 100% !important;
+  min-height: calc(100vh - 70px) !important;
+  min-height: calc(100dvh - 70px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  padding: 1.5rem 0 3rem 0 !important;
+  margin: 0 !important;
+  background-color: #081910 !important;
+}
+
+.hero_title {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 1.5rem 1rem !important;
+  line-height: 1.05 !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+.hero_title:nth-child(1) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+.projects {
+  position: relative !important;
+  width: 100% !important;
+  min-height: 100vh !important;
+  padding-top: 4rem !important;
+  box-sizing: border-box !important;
+}
+
+@media screen and (max-width: 768px) {
+  .hero_wrapper {
+    min-height: calc(100vh - 110px) !important;
+    min-height: calc(100dvh - 110px) !important;
+    padding: 1rem 0 2rem 0 !important;
+  }
+}
+
+/* ==============================================================================
+ * Cinematic Scroll Pin & Transitions for GAMEON LinEup & GAMEON MaP
+ * ==============================================================================
+ */
+
+/* 1. GAMEON LinEup Section */
+#talent-section {
+  position: relative;
+  overflow: visible !important;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #081910 !important;
+  background: #081910 url('../images/kv/bg.png') no-repeat center bottom fixed !important;
+  background-size: cover !important;
+}
+
+@media screen and (max-width: 991px) {
+  #talent-section {
+    background-color: #081910 !important;
+    background: #081910 url('../images/kv/bg.png') no-repeat center bottom !important;
+    background-size: cover !important;
+    background-attachment: scroll !important;
+  }
+}
+
+.talent-pin-stage {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.talent .home-speaker-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.talent .heading-div {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  margin-bottom: 2rem;
+}
+
+#talent-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin: 0;
+  font-family: var(--font-gameon, 'Upheaval', 'Young Display Bold', sans-serif) !important;
+  letter-spacing: 2px;
+  font-size: clamp(3.2rem, 5.5vw, 6.5rem) !important;
+  line-height: 1.1;
+  color: #ffffff;
+  text-shadow: 0 0 30px rgba(2, 18, 238, 0.45), 0 0 60px rgba(210, 0, 1, 0.4);
+}
+
+#talent-title .letterU,
+#talent-title .lineup {
+  font-size: inherit !important;
+  font-family: inherit !important;
+}
+
+.talent .speaker-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  transform-origin: center top;
+  will-change: transform, opacity;
+}
+
+/* 2. GAMEON MaP Section - Reverted to Old Black Background */
+#mapstagesection {
+  position: relative;
+  overflow: visible !important;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: #081910 !important;
+  background-color: #081910 !important;
+  background-image: none !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0 !important;
+  margin-top: 0 !important;
+}
+
+@media screen and (max-width: 991px) {
+  #mapstagesection {
+    background: #081910 !important;
+    background-color: #081910 !important;
+    background-image: none !important;
+  }
+}
+
+.map-stage {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.home-map-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+#mapstagesection .heading-div {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  margin-bottom: 2rem;
+}
+
+#map-title,
+#mapstagesection p {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  font-family: var(--font-gameon, 'Upheaval', 'Young Display Bold', sans-serif) !important;
+  letter-spacing: 2px;
+  font-size: clamp(3.2rem, 5.5vw, 6.5rem) !important;
+  line-height: 1.1;
+  color: #ffffff;
+  text-shadow: 0 0 30px rgba(2, 18, 238, 0.45), 0 0 60px rgba(210, 0, 1, 0.4);
+}
+
+.map-content-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center top;
+  will-change: transform, opacity;
+}
+
+.map-img-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: min(92vw, 1080px);
+}
+
+#mapstagesection img {
+  display: block !important;
+  max-height: 72vh !important;
+  max-width: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 25px 70px rgba(8, 25, 16, 0.7), 0 0 40px rgba(2, 18, 238, 0.2) !important;
+  transition: box-shadow 0.3s ease, transform 0.3s ease !important;
+}
+
+#mapstagesection img:hover {
+  box-shadow: 0 30px 85px rgba(2, 18, 238, 0.35), 0 0 50px rgba(210, 0, 1, 0.3) !important;
+  transform: scale(1.01) !important;
+}
+
+@media (max-width: 768px) {
+  #mapstagesection img {
+    max-height: 55vh !important;
+  }
+}
+
+/* ==============================================================================
+ * Ticket Section & GAMEON - e-TicKet Styling (Spider-Verse Glitch & Crisp Black)
+ * ==============================================================================
+ */
+
+/* 1. Ticket Card Container & Button Placement Below 320.000 đ */
+.sectionn {
+  padding: clamp(12px, 3vw, 28px) !important;
+}
+
+#ticket-section {
+  padding: clamp(12px, 3vw, 28px) 0 !important;
+}
+
+.ticket-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  width: min(100%, 880px) !important;
+  max-width: 880px !important;
+  border: 2px solid transparent !important;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(110deg, #116B09 0%, #0212EE 58%, #081910 100%) border-box !important;
+  border-radius: 22px !important;
+  padding: clamp(28px, 6.5vw, 42px) !important;
+  margin: 0 auto !important;
+  box-shadow: 0 10px 28px rgba(8, 25, 16, 0.08) !important;
+  box-sizing: border-box !important;
+}
+
+.ticket-item-left {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  text-align: left !important;
+}
+
+.ticket-item .top-div {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.ticket-item .ticket-title {
+  gap: 6px;
+  font-size: clamp(20px, 2.6vw, 22px);
+  line-height: 1.3;
+}
+
+.ticket-item .ticket-title img {
+  height: 16px !important;
+}
+
+.ticket-item .ticket-info {
+  font-family: 'Ganh Type - Regular', sans-serif !important;
+  font-size: clamp(15px, 1.8vw, 16px) !important;
+  line-height: 1.4 !important;
+  color: #081910 !important;
+  max-width: 100% !important;
+}
+
+.ticket-item .bottom-div {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+  margin-top: 14px !important;
+}
+
+.ticket-item .prize-text {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #081910 !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.ticket-item .ticket-button-div {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ticket-item .ticket-button-div .button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 7px 16px !important;
+  border-radius: 24px !important;
+  background: linear-gradient(135deg, #116B09 0%, #0212EE 65%, #081910 100%) !important;
+  box-shadow: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+.ticket-item .ticket-button-div .button:hover {
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 14px 32px rgba(2, 18, 238, 0.5) !important;
+}
+
+.ticket-item .ticket-button-div .button-text {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .ticket-item {
+    padding: clamp(40px, 8.2vw, 52px) clamp(22px, 6.8vw, 42px) clamp(32px, 6vw, 38px) !important;
+    border-radius: 18px !important;
+  }
+
+  .ticket-item .ticket-info {
+    width: calc(100% + 34px) !important;
+    max-width: calc(100% + 34px) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .ticket-item .ticket-info {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* 2. e-Ticket title typography */
+.ticket-title {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-gameon, 'Upheaval', 'Young Display Bold', sans-serif);
+  letter-spacing: 1px;
+  color: #081910;
+  font-size: clamp(20px, 2.6vw, 22px);
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.ticket-title .vt-root {
+  display: inline-block;
+  color: #081910;
+  --vt-ink: #081910;
+  --vt-paint-key: #081910;
+  --vt-key: #081910;
+  /* Deep, vibrant Spider-Verse inks for high contrast on white card */
+  --vt-plate-c: #0212EE;
+  --vt-plate-m: #D20001;
+  --vt-plate-y: #FFA62B;
+  --vt-violet: #0212EE;
+  --vt-magenta: #D20001;
+  --vt-green: #116B09;
+  --vt-gold: #FFA62B;
+  --vt-dot-red: #D20001;
+  --vt-blend: multiply;
+  transition: text-shadow 0.15s ease;
+}
+
+/* Khi bình thường / in xong: CHỮ MÀU ĐEN TUYỀN SẮC NÉT, không bóng mờ */
+.ticket-title .vt-root:not([data-glitching='true']) .vt-word,
+.ticket-title .vt-root:not([data-glitching='true']) .vt-word-inner {
+  color: #081910 !important;
+}
+
+/* Khi đang glitch / print: CÁC TỪ CHỜ HOẶC KEY=FALSE PHẢI TRONG SUỐT ĐỂ HIỆN RÕ PLATES VÀ MẢNH VỠ */
+.ticket-title .vt-word[data-state='waiting'],
+.ticket-title .vt-word[data-key='false'] {
+  color: transparent !important;
+}
+
+.ticket-title .vt-word[data-state='waiting'] .vt-word-inner,
+.ticket-title .vt-word[data-key='false'] .vt-word-inner {
+  color: transparent !important;
+}
+
+/* Hiệu ứng Chromatic Split viền pixel khi đang glitch */
+.ticket-title .vt-root[data-glitching='true'] {
+  text-shadow:
+    2px 0 0 var(--vt-plate-c, #0212EE),
+    -2px 0 0 var(--vt-plate-m, #D20001),
+    0 2px 0 var(--vt-green, #116B09),
+    2px 2px 0 rgba(8, 25, 16, 0.6);
+}
+
+.ticket-title .vt-key-ink {
+  color: #081910 !important;
+}
+
+/* Khối pixel shards sắc nét, nổi bật trên nền thẻ trắng */
+.ticket-title .vt-gap {
+  background-color: transparent !important;
+}
+
+.ticket-title .vt-rim {
+  background-color: #081910 !important;
+  image-rendering: pixelated;
+}
+
+.ticket-title .vt-shard {
+  box-shadow: 2px 2px 0 #081910 !important;
+  image-rendering: pixelated;
+}
+
+.ticket-title .vt-shard[data-ink='light'] .vt-shard-text {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.ticket-title .vt-shard[data-ink='dark'] .vt-shard-text {
+  color: #081910 !important;
+  font-weight: 700;
+}
+
+/* Các bản copy và plate rực rỡ */
+.ticket-title .vt-plate[data-plate='c'],
+.ticket-title .vt-comb-ink[data-tint='c'],
+.ticket-title .vt-prose[data-plate='c'] {
+  color: #0212EE !important;
+}
+
+.ticket-title .vt-plate[data-plate='m'],
+.ticket-title .vt-comb-ink[data-tint='m'],
+.ticket-title .vt-prose[data-plate='m'] {
+  color: #D20001 !important;
+}
+
+.ticket-title .vt-plate[data-plate='y'],
+.ticket-title .vt-prose[data-plate='y'] {
+  color: #FFA62B !important;
+}

@@ -1,0 +1,93 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+  customCss?: string[];
+  enableLenis?: boolean;
+  enableGlitch?: boolean;
+}
+
+const {
+  title = "Hùng Vương Concert: GAMEON",
+  description = "Hùng Vương Concert: GAMEON - Sự kiện âm nhạc từ thiện lớn nhất trong năm của trường THPT Chuyên Hùng Vương, Bình Dương. Cháy hết mình cùng âm nhạc!",
+  image = "/images/logo-ntt/hvc.webp",
+  canonicalURL = "https://hungvuongconcert.com/",
+  customCss = [],
+  enableLenis = true,
+  enableGlitch = true,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Hùng Vương Concert, HVC, GAMEON, Âm nhạc từ thiện, Bình Dương, THPT Chuyên Hùng Vương" />
+    <meta name="author" content="Ban Tổ Chức Hùng Vương Concert" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Core Font Preloads -->
+    <link rel="preload" href="/fonts/UPHEAVTT.TTF" as="font" type="font/ttf" crossorigin />
+
+    <!-- Global Stylesheets -->
+    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="/style/style_linked.css" />
+    <link rel="stylesheet" href="/style/spider-verse.css" />
+    {customCss.map((href) => <link rel="stylesheet" href={href} />)}
+
+    <!-- Animation & Smooth Scroll Engine Scripts (Preloaded in Head to avoid undefined GSAP) -->
+    {enableLenis && (
+      <>
+        <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        <script is:inline src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+      </>
+    )}
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Hùng Vương Concert",
+        "url": "https://hungvuongconcert.com",
+        "description": "Hùng Vương Concert là sự kiện phi lợi nhuận nhằm vận động quyên góp từ thiện, tổ chức hàng năm tại THPT chuyên Hùng Vương.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://hungvuongconcert.com/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    {enableGlitch && (
+      <script is:inline src="/js/spider-verse.js"></script>
+    )}
+
+    <slot name="scripts" />
+  </body>
+</html>

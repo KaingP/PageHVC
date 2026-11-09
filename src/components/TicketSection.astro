@@ -1,0 +1,111 @@
+---
+// TicketSection.astro - Khu vực thông tin vé, giới thiệu ý nghĩa chương trình và địa điểm tổ chức
+---
+
+<div class="sectionn" id="ticket-section">
+  <div class="ticket-item last">
+    <div class="ticket-item-left">
+      <div class="top-div">
+        <div class="ticket-title">
+          GAMEON - e-TicKet 
+          <img src="/images/e-ticket.webp" style="height: 25px; width: auto" alt="E-Ticket Icon" />
+        </div>
+        <div class="ticket-info">
+          Với giao diện đẹp và thao tác đơn giản, vé điện tử không chỉ là "chân ái" cho người chơi hệ
+          nhanh - gọn - lẹ mà còn vô cùng tiện lợi cho các khán giả ở xa đó!
+        </div>
+      </div>
+      <div class="bottom-div">
+        <div class="prize-text">320.000 đ</div>
+        <div class="ticket-button-div">
+          <a id="button" href="/eticket-form" target="_blank" class="button w-inline-block">
+            <div class="button-text" style="color: white">Mua vé</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="button check-btn" onclick="window.location.href='/ticketInfo'">
+    Check Your E-Ticket
+  </button>
+</div>
+
+<div class="section">
+  <div class="stage">
+    <div class="wrapper event">
+      <div class="bubble-wrapper">
+        <div class="heading-div" style="padding-bottom: 20px;">
+          <h3>HUNG VUONG CONCERT</h3>
+        </div>
+        <div class="top-bubble">
+          <div class="top-left-bubble">
+            <img src="/images/bubble/1.webp" loading="lazy" alt="" class="bubble-img" />
+            <img src="/images/bubble/2.webp" loading="lazy" alt="" class="bubble-img" />
+          </div>
+          <div class="top-right-bubble">
+            <img src="/images/bubble/3.webp" loading="lazy" alt="" class="bubble-img" />
+          </div>
+        </div>
+        <div class="bottom-bubble">
+          <img src="/images/bubble/4.webp" loading="lazy" alt="" class="bubble-img" />
+          <img src="/images/bubble/5.webp" loading="lazy" alt="" class="bubble-img" />
+        </div>
+      </div>
+      <div class="event-section">
+        <div class="row">
+          <div class="col image-col">
+            <img
+              src="/images/tuthien.webp"
+              alt="Hùng Vương Concert"
+              class="event-image"
+              loading="lazy"
+              style="width: 500px; height: 300px;"
+            />
+          </div>
+          <div class="col text-col">
+            <div class="event-text">
+              <p>Our Inspiration</p>
+              <div class="event-text-info">
+                Hùng Vương Concert là tổ chức phi lợi nhuận với mục đích vận động, quyên góp từ thiện,
+                được tổ chức hằng năm tại trường THPT chuyên Hùng Vương, tỉnh Bình Dương. Mỗi mùa, chương
+                trình bao gồm nhiều hoạt động gây quỹ, đặc biệt là đêm nhạc hoành tráng được tổ chức quy mô,
+                chuyên nghiệp với sự góp mặt của nhiều ca sĩ, diễn viên được đông đảo khán giả yêu thích.
+                Chương trình vừa là món quà tinh thần hấp dẫn, vừa là chiếc cầu nối cho những tấm lòng thiện nguyện.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --------------- Location Map ----------------- -->
+<div class="section orange">
+  <div class="map">
+    <div class="wrapper">
+      <div class="heading-div">
+        <p>OuR LocAtioN</p>
+      </div>
+      <div class="map-div">
+        <div class="location-left-div">
+          <div class="banner-div" style="margin-top: 70px;">
+            <img style="border-radius: 20px;" src="/images/chv.webp" loading="lazy" alt="Trường THPT Chuyên Hùng Vương" />
+          </div>
+        </div>
+        <div class="map-wrapper">
+          <div class="map-embed w-embed w-iframe">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15666.485014648724!2d106.657564!3d10.9919341!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d1141576a027%3A0x368ecd5b0de7834d!2sHung%20Vuong%20High%20School%20for%20The%20Gifted!5e0!3m2!1sen!2s!4v1733487065472!5m2!1sen!2s"
+              width="600"
+              height="350"
+              style="border:0; border-radius: 20px"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

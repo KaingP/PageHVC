@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Paper Ticket Payment Form | Hùng Vương Concert: GAMEON"
+  description="Thanh toán và đăng ký mua vé giấy Paper Ticket Hùng Vương Concert"
+  customCss={['/style/offline-payment.css']}
+  enableLenis={false}
+  enableGlitch={true}
+>
+  <div
+    class="payment-page-wrapper"
+    style="min-height: 100vh; background: url('/images/kv/hvc-ticket.webp') no-repeat fixed center top; background-size: cover; padding: 40px 15px;"
+  >
+    <div class="container">
+      <div class="data-display">
+        <h2>Hung Vuong Concert: GAMEON</h2>
+        <p class="amount">320.000 VNĐ</p>
+        <div class="details">
+          <p><strong>Paper Ticket</strong><br />Vé Thường</p>
+          <p>Giá vé <span id="subtotal">320.000 VNĐ</span></p>
+          <p>Số lượng <span id="quantity-display">1</span></p>
+          <hr />
+          <p class="total">Total due <span id="total-due">320.000 VNĐ</span></p>
+          <br />
+          <p>*Khi mua vé giấy (Paper Ticket), bạn sẽ được nhận vé thông qua địa chỉ trong thông tin bạn cung cấp.</p>
+          <p>
+            *Nhận ngay ưu đãi giao hàng miễn phí trong bán kính 4km! Với các địa điểm khác tại Bình Dương, phí ship chỉ 30.000
+            VNĐ, và 40.000 VNĐ nếu bạn ở TP Hồ Chí Minh.
+          </p>
+          <p>*Mỗi lượt mua tối đa 5 vé, bạn có thể mua nhiều lượt.</p>
+          <p>*Quý khách vui lòng thanh toán đủ số tiền cho đúng số vé khi nhận vé.</p>
+          <p>*Bằng việc mua vé, người tham gia đồng ý tuân thủ các quy định của BTC.</p>
+          <p>*Vé đã mua, vui lòng miễn đổi trả.</p>
+        </div>
+        <div class="banking-detail" id="banking-detail" style="display: none;">
+          <img src="/images/bankqr.webp" style="width: 200px; height: auto;" alt="Mã chuyển khoản" />
+          <p>Vietcombank</p>
+          <p>1024521600</p>
+          <p>Nguyen Thi Thu Phuong</p>
+          <p><strong>Nội dung chuyển khoản: </strong>số lượng vé _ tên _ số điện thoại</p>
+          <p><i><strong><u>Ví dụ:</u></strong> 5 Pham Le Gia Kiet 0912345678</i></p>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <form
+          id="form"
+          method="POST"
+          action="https://script.google.com/macros/s/AKfycbyduyPbOa8i3HofuEL_z7jwBjQh0jcfTozcFF0GmZ_Vxe37-rS-eQSLWWP-umzilD5y/exec"
+        >
+          <h3>Personal Information</h3>
+          <label for="customer" class="form-label">Họ và Tên*</label>
+          <div class="form-group">
+            <input type="text" class="form-control" id="customer" name="Customer" placeholder="" required />
+          </div>
+
+          <label for="phone" class="form-label">Số điện thoại*</label>
+          <div class="form-group">
+            <input type="text" class="form-control" id="phone" name="Phone" placeholder="" required />
+          </div>
+
+          <label for="email" class="form-label">Email*</label>
+          <div class="form-group">
+            <input type="text" class="form-control" id="email" name="Email" placeholder="" required />
+          </div>
+
+          <label for="linkfb" class="form-label">Link Facebook*</label>
+          <div class="form-group">
+            <input type="text" class="form-control" id="linkfb" name="linkfb" placeholder="" required />
+          </div>
+
+          <label for="address" class="form-label">Địa chỉ*</label>
+          <div class="form-group">
+            <input type="text" class="form-control" id="address" name="Address" placeholder="" required />
+          </div>
+
+          <label for="quantity" class="form-label">Số lượng vé*</label>
+          <div class="form-group">
+            <input type="number" min="1" max="5" class="form-control" id="quantity" name="Quantity" value="1" required />
+          </div>
+
+          <label for="payment-method" class="form-label">Phương thức thanh toán*</label>
+          <div class="form-group">
+            <select id="payment-method" name="PaymentMethod" class="form-control" required>
+              <option value="" disabled selected>Chọn phương thức thanh toán</option>
+              <option value="transfer">Chuyển khoản</option>
+              <option value="cash-on-delivery">Thanh toán khi nhận hàng</option>
+            </select>
+          </div>
+
+          <div id="transfer-section" style="display: none;">
+            <label style="color: red">*Upload hóa đơn chuyển khoản để HVC xác nhận giao dịch</label>
+            <div class="form-group">
+              <input type="file" class="form-control" id="image" name="Image" accept="image/*" />
+            </div>
+          </div>
+
+          <label for="note" class="form-label">Hãy để lại lời nhắn cho chúng mình nhé !!</label>
+          <div class="form-group">
+            <input type="text" class="form-control" id="note" name="Note" placeholder="" />
+          </div>
+
+          <label for="referrer" class="form-label">Người giới thiệu</label>
+          <div class="form-group">
+            <input type="text" class="form-control" id="referrer" name="referrer" placeholder="Nếu không có, vui lòng bỏ qua." />
+          </div>
+          <input type="hidden" id="time" name="Time" />
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" required /> Tôi đồng ý với các điều khoản và quy định khi tham gia sự kiện.
+            </label>
+          </div>
+          <button type="submit" class="pay-btn">Mua vé</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="popup" class="popup-overlay">
+      <div class="popup-content">
+        <h2>Thông báo</h2>
+        <p id="popup-message"></p>
+        <button id="popup-close" class="popup-close-btn">Đóng</button>
+      </div>
+    </div>
+
+    <div class="popup-overlay" id="confirmation-popup">
+      <div class="popup-content">
+        <h2>Thông báo</h2>
+        <p id="popup-cf-message"></p>
+        <button class="popup-confirm-btn" id="popup-confirm-btn">Xác nhận</button>
+        <button id="popup-cf-close" class="popup-close-btn">Hủy</button>
+      </div>
+    </div>
+  </div>
+
+  <Fragment slot="scripts">
+    <script is:inline src="/js/paperticket.js"></script>
+  </Fragment>
+</Layout>
