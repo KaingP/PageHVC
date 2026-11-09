@@ -1,5 +1,5 @@
 ---
-// HeaderNav.astro - Thanh điều hướng thương hiệu trong suốt, không viền
+// HeaderNav.astro - Thanh điều hướng thương hiệu trong suốt với thanh HP Retro Arcade
 ---
 
 <header class="nav">
@@ -13,8 +13,13 @@
     <div class="nav_item">
       <span class="nav-effect ganh">18.01.25.</span>
     </div>
-    <div class="nav_item">
-      <span class="nav-effect ganh">binhduong.</span>
+    <div class="nav_item nav-hp-item">
+      <div class="retro-progress-container">
+        <span class="bar-label">HP</span>
+        <div class="retro-progress-bar">
+          <div class="retro-progress-fill" id="scroll-progress-fill"></div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
@@ -42,11 +47,16 @@
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
+    display: grid !important;
+    align-items: center !important;
   }
 
   .nav_item {
     color: #FFFFFF !important;
     border: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .nav-effect {
@@ -57,5 +67,79 @@
 
   .nav-effect:hover {
     opacity: 0.8;
+  }
+
+  /* Retro HP Progress Bar */
+  .nav-hp-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .retro-progress-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(8, 25, 16, 0.88);
+    padding: 5px 12px;
+    border: 2px solid #0212EE;
+    box-shadow: 3px 3px 0px #D20001;
+    border-radius: 4px;
+    backdrop-filter: blur(6px);
+  }
+
+  .bar-label {
+    font-family: var(--font-gameon, 'Upheaval', monospace);
+    font-size: 15px;
+    color: #D20001;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px #081910;
+    line-height: 1;
+  }
+
+  .retro-progress-bar {
+    width: 120px;
+    height: 14px;
+    background: #081910;
+    border: 1.5px solid #FFFFFF;
+    padding: 1.5px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .retro-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #D20001, #FFA62B, #116B09, #0212EE);
+    background-size: 200% 100%;
+    transition: width 0.08s linear;
+    animation: hpColorShift 2s linear infinite;
+  }
+
+  @keyframes hpColorShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .nav {
+      padding: 8px 4px !important;
+    }
+    .retro-progress-container {
+      padding: 3px 8px;
+      gap: 5px;
+    }
+    .retro-progress-bar {
+      width: 75px;
+      height: 11px;
+    }
+    .bar-label {
+      font-size: 11px;
+    }
   }
 </style>
