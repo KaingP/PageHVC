@@ -1,0 +1,171 @@
+---
+// PixelTransition.astro - Điểm chuyển cảnh Pixel Dissolve từ dưới lên trên (DEMO1 Style) giữa các section
+interface Props {
+  id: string;
+  fromStage: string;
+  toStage: string;
+  img: string;
+  tag: string;
+  subtag?: string;
+}
+
+const { id, fromStage, toStage, img, tag, subtag = "LOADING NEXT STAGE..." } = Astro.props;
+---
+
+<section class="pixel-transition-zone" id={id} data-from={fromStage} data-to={toStage}>
+  <!-- Hình ảnh sân khấu biểu diễn làm nền chuyển cảnh -->
+  <div class="transition-visual">
+    <img src={img} alt={tag} loading="lazy" />
+    
+    <!-- Nhãn STAGE phong cách Arcade 8-bit -->
+    <div class="transition-stage-tag">
+      <span class="tag-title">{tag}</span>
+      <span class="tag-sub">{subtag}</span>
+    </div>
+
+    <!-- HUD chỉ báo Warp chuyển vùng -->
+    <div class="transition-warp-hud">
+      <span class="warp-dot">▲</span>
+      <span class="warp-route">{fromStage} ➔ {toStage}</span>
+    </div>
+  </div>
+
+  <!-- Khung lưới hạt Pixel Dissolve động -->
+  <div class="transition-dissolve-grid"></div>
+</section>
+
+<style is:global>
+  /* Transition Zone Container */
+  .pixel-transition-zone {
+    position: relative !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    overflow: hidden !important;
+    background-color: #081910 !important;
+  }
+
+  .pixel-transition-zone .transition-visual {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    will-change: clip-path;
+  }
+
+  .pixel-transition-zone .transition-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.15) saturate(1.2) brightness(0.9);
+  }
+
+  /* Tag góc màn hình */
+  .pixel-transition-zone .transition-stage-tag {
+    position: absolute;
+    bottom: 35px;
+    left: 35px;
+    background: rgba(8, 25, 16, 0.94);
+    color: #FFFFFF;
+    font-family: var(--font-gameon, 'Upheaval', monospace);
+    padding: 10px 22px;
+    border-left: 5px solid #D20001;
+    border-bottom: 3px solid #FFA62B;
+    box-shadow: 4px 4px 0px #0212EE;
+    z-index: 10;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(210, 0, 1, 0.6);
+    user-select: none;
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .pixel-transition-zone .transition-stage-tag .tag-title {
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    line-height: 1.1;
+  }
+
+  .pixel-transition-zone .transition-stage-tag .tag-sub {
+    font-size: 0.85rem;
+    color: #FFA62B;
+    letter-spacing: 1.5px;
+  }
+
+  /* HUD góc trên */
+  .pixel-transition-zone .transition-warp-hud {
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    z-index: 15;
+    background: rgba(8, 25, 16, 0.92);
+    padding: 8px 16px;
+    border: 2px solid #FFA62B;
+    box-shadow: 3px 3px 0px #D20001;
+    font-family: var(--font-gameon, 'Upheaval', monospace);
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    color: #FFA62B;
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+  }
+
+  .pixel-transition-zone .warp-dot {
+    color: #116B09;
+    animation: warpDotBlink 0.6s infinite steps(1);
+  }
+
+  @keyframes warpDotBlink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  /* Lưới Pixel Dissolve */
+  .pixel-transition-zone .transition-dissolve-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 25;
+    pointer-events: none;
+  }
+
+  .pixel-transition-zone .dissolve-cell {
+    position: absolute;
+    visibility: hidden;
+    font-family: var(--font-gameon, 'Upheaval', monospace);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4), inset -1px -1px 0 rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(8, 25, 16, 0.4);
+    overflow: hidden;
+    line-height: 1;
+  }
+
+  @media screen and (max-width: 768px) {
+    .pixel-transition-zone .transition-stage-tag {
+      font-size: 1.05rem;
+      bottom: 20px;
+      left: 20px;
+      padding: 6px 14px;
+    }
+    .pixel-transition-zone .transition-warp-hud {
+      top: 20px;
+      right: 20px;
+      font-size: 0.85rem;
+      padding: 5px 10px;
+    }
+  }
+</style>

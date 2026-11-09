@@ -3,13 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import IntroOverlay from '../components/IntroOverlay.astro';
 import HeaderNav from '../components/HeaderNav.astro';
 import Hero from '../components/Hero.astro';
-import StageSpotlight from '../components/StageSpotlight.astro';
+import GalleryProjects from '../components/GalleryProjects.astro';
+import PixelTransition from '../components/PixelTransition.astro';
 import Lineup from '../components/Lineup.astro';
 import MapSection from '../components/MapSection.astro';
 import TicketSection from '../components/TicketSection.astro';
+import HungVuongConcertSection from '../components/HungVuongConcertSection.astro';
 import Faq from '../components/Faq.astro';
 import Sponsors from '../components/Sponsors.astro';
 import Footer from '../components/Footer.astro';
+import StageIndicator from '../components/StageIndicator.astro';
 ---
 
 <Layout
@@ -19,27 +22,76 @@ import Footer from '../components/Footer.astro';
   <!-- Màn hình mở đầu đậm chất điện ảnh -->
   <IntroOverlay />
 
-  <!-- Nội dung trang chính: Hero HVC GAMEON -->
-  <section class="content">
+  <!-- 1. STAGE: GAME ON (Hero & Album 3 hàng ảnh với hiệu ứng cuộn parallax như cũ) -->
+  <section class="content" id="stage-gameon">
     <div class="container">
       <HeaderNav />
       <main class="app">
         <Hero />
+        <GalleryProjects />
       </main>
     </div>
   </section>
 
-  <!-- STAGE SPOTLIGHT: Hiệu ứng cuộn Pixel Dissolve từ dưới lên trên (DEMO1 Style) -->
-  <StageSpotlight />
+  <!-- CHUYỂN CẢNH 1: Giữa 3 hàng ảnh và Lineup (Pixel Dissolve từ dưới lên trên) -->
+  <PixelTransition
+    id="trans-gameon-lineup"
+    fromStage="01. GAME ON"
+    toStage="02. LINE UP"
+    img="/images/data/1.webp"
+    tag="STAGE 02: LINE UP"
+    subtag="LOADING ARTIST ROSTER..."
+  />
 
-  <!-- Lineup nghệ sĩ -->
-  <Lineup />
+  <!-- 2. STAGE: LINE UP (Danh sách nghệ sĩ) -->
+  <div id="stage-lineup">
+    <Lineup />
+  </div>
 
-  <!-- Bản đồ sân khấu -->
-  <MapSection />
+  <!-- CHUYỂN CẢNH 2: Cuối Lineup và Map (Pixel Dissolve từ dưới lên trên) -->
+  <PixelTransition
+    id="trans-lineup-map"
+    fromStage="02. LINE UP"
+    toStage="03. MAP"
+    img="/images/data/2.webp"
+    tag="STAGE 03: MAP"
+    subtag="RADAR RADIAL SCANNING..."
+  />
 
-  <!-- Khu vực mua vé & Giới thiệu & Địa điểm -->
-  <TicketSection />
+  <!-- 3. STAGE: MAP (Sơ đồ sân khấu) -->
+  <div id="stage-map">
+    <MapSection />
+  </div>
+
+  <!-- CHUYỂN CẢNH 3: Cuối Map và E-Ticket (Pixel Dissolve từ dưới lên trên) -->
+  <PixelTransition
+    id="trans-map-ticket"
+    fromStage="03. MAP"
+    toStage="04. E-TICKET"
+    img="/images/data/3.webp"
+    tag="STAGE 04: E-TICKET"
+    subtag="OPENING DIGITAL INVENTORY..."
+  />
+
+  <!-- 4. STAGE: E-TICKET (Khu vực vé to hơn, giữ nguyên vẹn box) -->
+  <div id="stage-eticket">
+    <TicketSection />
+  </div>
+
+  <!-- CHUYỂN CẢNH 4: Cuối E-Ticket và phần còn lại (Pixel Dissolve từ dưới lên trên) -->
+  <PixelTransition
+    id="trans-ticket-hvc"
+    fromStage="04. E-TICKET"
+    toStage="04. HUNGVUONGCONCERT"
+    img="/images/data/4.webp"
+    tag="FINAL STAGE: HUNGVUONGCONCERT"
+    subtag="OUR INSPIRATION & CHARITY..."
+  />
+
+  <!-- 5. STAGE: HUNGVUONGCONCERT (Ý nghĩa chương trình & Bản đồ trường THPT Chuyên Hùng Vương) -->
+  <div id="stage-hungvuongconcert">
+    <HungVuongConcertSection />
+  </div>
 
   <!-- Câu hỏi thường gặp -->
   <Faq />
@@ -49,6 +101,9 @@ import Footer from '../components/Footer.astro';
 
   <!-- Chân trang -->
   <Footer />
+
+  <!-- HUD hiển thị STAGE cố định ở góc dưới bên trái -->
+  <StageIndicator />
 
   <!-- Client-side Animation & Interactivity Scripts -->
   <Fragment slot="scripts">

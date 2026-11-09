@@ -1,0 +1,199 @@
+---
+// StageIndicator.astro - HUD chỉ báo STAGE phong cách Retro Arcade ở góc dưới bên trái màn hình
+---
+
+<aside class="retro-stage-indicator" id="retro-stage-hud" aria-label="Game Stage Indicator">
+  <div class="hud-top-bar">
+    <span class="hud-status-dot">●</span>
+    <span class="hud-brand-tag">CURRENT STAGE</span>
+    <span class="hud-version-tag">HVC'25</span>
+  </div>
+
+  <div class="hud-active-stage-display" id="hud-active-stage-text">
+    <span class="stage-prefix">STAGE 01 //</span>
+    <span class="stage-title">GAME ON</span>
+  </div>
+
+  <nav class="hud-stage-list" aria-label="Stages list">
+    <button class="stage-step-btn active" data-stage="1" data-target="#stage-gameon" type="button">
+      <span class="step-num">1</span>
+      <span class="step-name">GAME ON</span>
+    </button>
+    <button class="stage-step-btn" data-stage="2" data-target="#stage-lineup" type="button">
+      <span class="step-num">2</span>
+      <span class="step-name">LINE UP</span>
+    </button>
+    <button class="stage-step-btn" data-stage="3" data-target="#stage-map" type="button">
+      <span class="step-num">3</span>
+      <span class="step-name">MAP</span>
+    </button>
+    <button class="stage-step-btn" data-stage="4" data-target="#stage-eticket" type="button">
+      <span class="step-num">4</span>
+      <span class="step-name">HUNGVUONGCONCERT</span>
+    </button>
+  </nav>
+</aside>
+
+<style is:global>
+  /* Cố định ở góc dưới bên trái màn hình */
+  .retro-stage-indicator {
+    position: fixed !important;
+    bottom: 24px !important;
+    left: 24px !important;
+    z-index: 999 !important;
+    background: rgba(8, 25, 16, 0.94) !important;
+    border: 2.5px solid #D20001 !important;
+    border-radius: 6px !important;
+    box-shadow: 4px 4px 0px #0212EE, 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+    padding: 12px 16px !important;
+    font-family: var(--font-gameon, 'Upheaval', monospace) !important;
+    backdrop-filter: blur(10px) !important;
+    min-width: 230px !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+    user-select: none !important;
+    box-sizing: border-box !important;
+  }
+
+  .retro-stage-indicator:hover {
+    box-shadow: 5px 5px 0px #FFA62B, 0 14px 35px rgba(210, 0, 1, 0.3) !important;
+  }
+
+  /* Header thanh HUD */
+  .hud-top-bar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-bottom: 6px !important;
+    font-size: 11px !important;
+    letter-spacing: 1.5px !important;
+    color: #FFA62B !important;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2) !important;
+    padding-bottom: 4px !important;
+  }
+
+  .hud-status-dot {
+    color: #116B09 !important;
+    font-size: 10px !important;
+    animation: hudDotPulse 1s infinite steps(1) !important;
+  }
+
+  @keyframes hudDotPulse {
+    0%, 49% { opacity: 1; text-shadow: 0 0 6px #116B09; }
+    50%, 100% { opacity: 0.2; text-shadow: none; }
+  }
+
+  .hud-brand-tag {
+    font-weight: bold !important;
+    flex-grow: 1 !important;
+  }
+
+  .hud-version-tag {
+    color: #FFFFFF !important;
+    opacity: 0.7 !important;
+  }
+
+  /* Tiêu đề Stage lớn hiện tại */
+  .hud-active-stage-display {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 6px !important;
+    margin-bottom: 10px !important;
+    color: #FFFFFF !important;
+    font-size: 1.15rem !important;
+    letter-spacing: 1.2px !important;
+    line-height: 1.2 !important;
+  }
+
+  .hud-active-stage-display .stage-prefix {
+    color: #D20001 !important;
+    font-size: 0.95rem !important;
+  }
+
+  .hud-active-stage-display .stage-title {
+    color: #FFFFFF !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6) !important;
+    font-weight: bold !important;
+  }
+
+  /* Danh sách 4 Stage */
+  .hud-stage-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+
+  .stage-step-btn {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 3px !important;
+    padding: 3px 8px !important;
+    color: rgba(255, 255, 255, 0.65) !important;
+    font-family: var(--font-gameon, 'Upheaval', monospace) !important;
+    font-size: 12px !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+    text-align: left !important;
+    transition: all 0.15s ease !important;
+    box-sizing: border-box !important;
+  }
+
+  .stage-step-btn:hover {
+    background: rgba(210, 0, 1, 0.2) !important;
+    border-color: #D20001 !important;
+    color: #FFFFFF !important;
+    transform: translateX(3px) !important;
+  }
+
+  .stage-step-btn.active {
+    background: #D20001 !important;
+    border-color: #FFA62B !important;
+    color: #FFFFFF !important;
+    box-shadow: 2px 2px 0px #0212EE !important;
+    font-weight: bold !important;
+  }
+
+  .stage-step-btn .step-num {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 16px !important;
+    height: 16px !important;
+    background: rgba(8, 25, 16, 0.8) !important;
+    border-radius: 2px !important;
+    color: #FFA62B !important;
+    font-size: 11px !important;
+  }
+
+  .stage-step-btn.active .step-num {
+    background: #081910 !important;
+    color: #FFFFFF !important;
+  }
+
+  .stage-step-btn .step-name {
+    flex-grow: 1 !important;
+  }
+
+  /* Responsive Mobile */
+  @media screen and (max-width: 768px) {
+    .retro-stage-indicator {
+      bottom: 12px !important;
+      left: 12px !important;
+      padding: 8px 10px !important;
+      min-width: 170px !important;
+      max-width: 220px !important;
+    }
+
+    .hud-active-stage-display {
+      font-size: 0.95rem !important;
+      margin-bottom: 6px !important;
+    }
+
+    .stage-step-btn {
+      font-size: 10px !important;
+      padding: 2px 6px !important;
+    }
+  }
+</style>
